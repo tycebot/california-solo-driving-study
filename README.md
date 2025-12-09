@@ -1,4 +1,4 @@
-# california-solo-driving-study
+# California Solo Driving Study
 Author: Terrell Enoru
 
 Date of Submission: 12/9/2025
