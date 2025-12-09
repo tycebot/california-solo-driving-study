@@ -4,7 +4,7 @@ author: "Terrell Enoru"
 thanks: "Project repository available at: https://github.com/tycebot/california-solo-driving-study"
 date: today
 date-format: long
-abstract: "Understanding commuting patterns is useful for transportation planning and environmental policy in California. This study examines whether ethnic and geographic factors can predict the proportion of workers who drive alone to work across different parts of California. The dataset records transportation methods across ethnicities and regions.  Using weighted multiple linear regression , I analyze transportation mode choices across different Metropolitan Planning Organizations and demographic groups. The results show that ethnicity,region, and population were found to be excellent at predicting the proportion of workers who drive alone $(R^2 = 0.96)$  . These results suggest that commuting methods differ significantly between different regions and ethnicities."
+abstract: "Understanding commuting patterns is useful for transportation planning and environmental policy in California. This study examines whether ethnic and geographic factors can predict the proportion of workers who drive alone to work across different parts of California. The dataset records transportation methods across ethnicities and regions.  Using weighted multiple linear regression , I analyze transportation mode choices across different regions and ethnicities. The results show that ethnicity,region, and population were found to be excellent at predicting the proportion of workers who drive alone $(R^2 = 0.96)$  . These results suggest that commuting methods differ significantly between different regions and ethnicities."
 format: pdf
 bibliography: references.bib
 number-sections: true
@@ -275,4 +275,5 @@ Potential improvements on this study could be incorporating data on public trans
 
 
 # Works Cited {#sec-refs}
+
 
