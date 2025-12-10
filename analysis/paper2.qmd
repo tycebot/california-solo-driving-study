@@ -131,6 +131,7 @@ where $\beta_0$ represents the baseline percentage of solo drivers for the refer
 
 The log transformation of population is used to account for the expected nonlinear relationship between population and transportation method. As populations grow, the marginal impact of additional people on transportation patterns likely shrinks. Which a logarithmic transformation models better than a linear relationship. Weighted least squares is used to account for large differences in population across regions and ethnicity. Specifically the inverse of the squared standard error is used as the weight.
 $$w_i = \frac{1}{\text{SE}(Y_i)^2}$$
+To explain including all three predictor variables (log population, region, and ethnicity) in the final model, I compared the full model against two reduced candidate models. The two candidate models were the full model excluding ethnicity, and the full model excluding region. The models were compared using adjusted $R^2$ and Akaike Information Criterion (AIC), which balance model fit against complexity. The full model has an adjusted $R^2$ of 0.96 and an AIC value of 519. For the model excluding ethnicity the adjusted $R^2$ is 0.32 and the AIC is 765. For the model excluding region the adjusted $R^2$ is 0.41 and the AIC is 746. The higher adjusted $R^2$ and lower AIC values for the full model versus the candidate models indicates that both ethnicity and region provide additional explanatory power beyond population alone. The subsequent F-tests on ethnicity and region coefficients (presented in Results) provide additional evidence supporting their inclusion.
 
 
 The analysis relies on four key assumptions about the error terms. The assumptions are that after log transformation the relationship between predictors and response is linear, observations are independent of one another, the variance is constant $Var(\epsilon_i) = \sigma^2$ for all $i$,
@@ -169,9 +170,9 @@ full_model <- lm(percent ~ race_eth_name + region_name + log(pop_total),
 # Get model summaries
 full_summary <- summary(full_model)
 
-# Extract r-squared values
+# Get r-squared values for full model
 full_r_squared <- full_summary$r.squared
-
+adj_r_squared<- full_summary$adj.r.squared
 # Model without race_eth_name 
 reduced_model_race <- lm(percent ~ region_name + log(pop_total),
                          data = drive_alone_data, 
@@ -182,6 +183,15 @@ reduced_model_region <- lm(percent ~ race_eth_name + log(pop_total),
                          data = drive_alone_data, 
                          weights = 1/percent_se^2)
 
+
+#Get r-squared values for reduced models
+no_race_rsquared<-summary(reduced_model_race)$adj.r.squared
+no_region_rsquared<-summary(reduced_model_region)$adj.r.squared
+
+#Get AIC values
+full_model_AIC<-AIC(full_model)
+no_race_AIC<-AIC(reduced_model_race)
+no_region_AIC<-AIC(reduced_model_region)
 # F tests
 race_test<-anova(reduced_model_race,full_model)
 region_test<-anova(reduced_model_region,full_model)
